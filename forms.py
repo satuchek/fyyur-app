@@ -193,6 +193,7 @@ class ArtistForm(Form):
     )
     phone = StringField(
         # TODO implement validation logic for state
+        # I'm not sure what "validation logic for state" on 'phone' is, please elaborate.
         'phone'
     )
     image_link = StringField(
@@ -224,6 +225,8 @@ class ArtistForm(Form):
      )
     facebook_link = StringField(
         # TODO implement enum restriction
+        # I'm not sure what an enum restriction for a facebook_link would be,
+        # if this is a problem with the submission please provide more instruction.
         'facebook_link', validators=[URL()]
      )
 

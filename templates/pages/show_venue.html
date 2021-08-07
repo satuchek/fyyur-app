@@ -24,7 +24,7 @@
 			<i class="fas fa-phone-alt"></i> {% if venue.phone %}{{ venue.phone }}{% else %}No Phone{% endif %}
 		</p>
 		<p>
-			<i class="fas fa-link"></i> {% if venue.website %}<a href="{{ venue.website }}" target="_blank">{{ venue.website }}</a>{% else %}No Website{% endif %}
+			<i class="fas fa-link"></i> {% if venue.website_link %}<a href="{{ venue.website_link }}" target="_blank">{{ venue.website_link }}</a>{% else %}No Website{% endif %}
 		</p>
 		<p>
 			<i class="fab fa-facebook-f"></i> {% if venue.facebook_link %}<a href="{{ venue.facebook_link }}" target="_blank">{{ venue.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
@@ -74,8 +74,27 @@
 		{% endfor %}
 	</div>
 </section>
-
 <a href="/venues/{{ venue.id }}/edit"><button class="btn btn-primary btn-lg">Edit</button></a>
+<button id="delete_venue" data-id="{{ venue.id }}" class="btn btn-primary btn-lg">Delete</button>
+
+<script>
+	function registerDeleteBtn(){
+		console.log("In register");
+		const deleteBtn = document.getElementById("delete_venue");
+		deleteBtn.onclick=function(e){
+			e.preventDefault();
+			const venue_id = e.target.dataset['id'];
+			fetch('/venues/' + venue_id, {
+				method: 'DELETE'
+			}).then(function(response){
+				window.location.replace("/");
+			});
+		}
+	}
+
+	registerDeleteBtn();
+
+</script>
 
 {% endblock %}
 
